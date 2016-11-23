@@ -133,17 +133,6 @@ check_space() {
 	# Multiply by number of ABIs :).
 	local abis=( $(multilib_get_enabled_abis) )
 	(( build_size *= ${#abis[@]} ))
-	
-	ewarn "DEBUG: enabled  ABIs: ${abis}"
-
-	for abi in $(get_all_abis); do
-		local abi_chost=$(get_abi_CHOST "${abi}")
-		ewarn "DEBUG: create symlinks fo  ABI: ${abi} and CHOST: ${abi_chost}"
-		if [[ -z ${abi_chost} ]] ; then
-			ewarn "empty CHOST"
-		fi
-	done
-	ewarn "aarch64 as abi: CHOST: $(get_abi_CHOST "aarch64")"
 
 	local CHECKREQS_DISK_BUILD=${build_size}M
 	check-reqs_pkg_pretend
