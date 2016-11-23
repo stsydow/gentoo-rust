@@ -1,8 +1,8 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
 inherit bash-completion-r1
 
@@ -25,6 +25,7 @@ src_unpack() {
 	local postfix
 	use amd64 && postfix=x86_64-unknown-linux-gnu
 	use x86 && postfix=i686-unknown-linux-gnu
+	use arm64 && postfix=aarch64-unknown-linux-gnu
 
 	wget "${MY_SRC_URI}-${postfix}.tar.gz" || die
 	unpack ./"rust-nightly-${postfix}.tar.gz"
